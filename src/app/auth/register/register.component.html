@@ -1,0 +1,105 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+      id="profile-img"
+    />
+    <form
+      [formGroup]="signUpForm"
+      *ngIf="!isSuccessful"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          [formControlName]="'username'"
+          minlength="4"
+          maxlength="20"
+          required
+          autofocus
+        />
+        <div
+          class="alert-danger"
+          *ngIf="
+            !signUpForm.get('username').valid &&
+            signUpForm.get('username').touched
+          "
+        >
+          Please provide a valid username (4 - 20 Characters)
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          [formControlName]="'email'"
+          required
+          email
+          autofocus
+        />
+        <div
+          class="alert-danger"
+          *ngIf="
+            !signUpForm.get('email').valid && signUpForm.get('email').touched
+          "
+        >
+          Please provide a valid email adress
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          class="form-control"
+          [formControlName]="'password'"
+          minlength="6"
+          required
+          autofocus
+        />
+        <div
+          class="alert-danger"
+          *ngIf="
+            !signUpForm.get('password').valid &&
+            signUpForm.get('password').touched
+          "
+        >
+          Please provide a valid password (6 - 20 Characters)
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          [formControlName]="'phoneNumber'"
+          required
+          autofocus
+        />
+        <div
+          class="alert-danger"
+          *ngIf="
+            !signUpForm.get('phoneNumber').valid &&
+            signUpForm.get('phoneNumber').touched
+          "
+        >
+          Please provide a valid username (Max 20 Characters)
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+      <div class="alert alert-warning" *ngIf="isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div>

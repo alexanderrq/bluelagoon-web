@@ -1,0 +1,64 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form *ngIf="!isLoggedIn" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          [formControlName]="'username'"
+          required
+          autofocus
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="
+            loginForm.get('username').touched &&
+            !loginForm.get('username').valid
+          "
+        >
+          Please provide a valid username
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          [formControlName]="'password'"
+          minlength="6"
+          required
+          autofocus
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="
+            !loginForm.get('password').valid &&
+            loginForm.get('password').touched
+          "
+        >
+          Password must be at least 6 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Login</button>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+  </div>
+</div>

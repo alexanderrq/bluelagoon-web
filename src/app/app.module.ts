@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
+import { authInterceptorsProviders } from './helpers/auth.interceptor';
+import { UserModule } from './user/user.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    SharedModule,
+    UserModule,
+    AuthModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorsProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
