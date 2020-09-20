@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       password: '',
       email: '',
       phoneNumber: '',
-      roles: ['user', 'mod', 'admin'],
+      roles: [],
     };
     this.isSuccessful = false;
     this.isSignUpFailed = false;
